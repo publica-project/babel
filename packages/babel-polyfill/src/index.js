@@ -1,14 +1,10 @@
-if (global._babelPolyfill) {
-  throw new Error("only one instance of babel-polyfill is allowed");
-}
-global._babelPolyfill = true;
-
-import "core-js/shim";
-import "regenerator-runtime/runtime";
+require("core-js/shim");
+// require("regenerator-runtime/runtime");
 
 // Should be removed in the next major release:
-
-import "core-js/fn/regexp/escape";
+if (!("escape" in RegExp)) {
+  require("core-js/fn/regexp/escape");
+}
 
 const DEFINE_PROPERTY = "defineProperty";
 function define(O, key, value) {
